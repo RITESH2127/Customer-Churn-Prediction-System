@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Churn Predictor</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+
+    <div class="container">
+        <header>
+            <h1>Churn Predictor AI</h1>
+            <p class="subtitle">Predict customer retention with advanced machine learning</p>
+        </header>
+
+        <form id="predict-form">
+            <!-- Demographics -->
+            <div class="form-group">
+                <label for="gender">Gender</label>
+                <select id="gender" name="gender">
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="SeniorCitizen">Senior Citizen</label>
+                <select id="SeniorCitizen" name="SeniorCitizen">
+                    <option value="0">No</option>
+                    <option value="1">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Partner">Partner</label>
+                <select id="Partner" name="Partner">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="Dependents">Dependents</label>
+                <select id="Dependents" name="Dependents">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                </select>
+            </div>
+
+            <!-- Account Details -->
+            <div class="form-group">
+                <label for="tenure">Tenure (Months)</label>
+                <input type="number" id="tenure" name="tenure" value="12" min="0" required>
+            </div>
+            <div class="form-group">
+                <label for="Contract">Contract</label>
+                <select id="Contract" name="Contract">
+                    <option value="Month-to-month">Month-to-month</option>
+                    <option value="One year">One year</option>
+                    <option value="Two year">Two year</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="PaperlessBilling">Paperless Billing</label>
+                <select id="PaperlessBilling" name="PaperlessBilling">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="PaymentMethod">Payment Method</label>
+                <select id="PaymentMethod" name="PaymentMethod">
+                    <option value="Electronic check">Electronic check</option>
+                    <option value="Mailed check">Mailed check</option>
+                    <option value="Bank transfer (automatic)">Bank transfer</option>
+                    <option value="Credit card (automatic)">Credit card</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="MonthlyCharges">Monthly Charges ($)</label>
+                <input type="number" id="MonthlyCharges" name="MonthlyCharges" value="70.0" step="0.01" required>
+            </div>
+            <div class="form-group">
+                <label for="TotalCharges">Total Charges ($)</label>
+                <input type="number" id="TotalCharges" name="TotalCharges" value="840.0" step="0.01" required>
+            </div>
+
+            <!-- Services -->
+            <div class="form-group">
+                <label for="PhoneService">Phone Service</label>
+                <select id="PhoneService" name="PhoneService">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="MultipleLines">Multiple Lines</label>
+                <select id="MultipleLines" name="MultipleLines">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No phone service">No phone service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="InternetService">Internet Service</label>
+                <select id="InternetService" name="InternetService">
+                    <option value="Fiber optic">Fiber optic</option>
+                    <option value="DSL">DSL</option>
+                    <option value="No">No</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="OnlineSecurity">Online Security</label>
+                <select id="OnlineSecurity" name="OnlineSecurity">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No internet service">No internet service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="OnlineBackup">Online Backup</label>
+                <select id="OnlineBackup" name="OnlineBackup">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No internet service">No internet service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="DeviceProtection">Device Protection</label>
+                <select id="DeviceProtection" name="DeviceProtection">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No internet service">No internet service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="TechSupport">Tech Support</label>
+                <select id="TechSupport" name="TechSupport">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No internet service">No internet service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="StreamingTV">Streaming TV</label>
+                <select id="StreamingTV" name="StreamingTV">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No internet service">No internet service</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="StreamingMovies">Streaming Movies</label>
+                <select id="StreamingMovies" name="StreamingMovies">
+                    <option value="No">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No internet service">No internet service</option>
+                </select>
+            </div>
+
+            <div class="full-width">
+                <button type="submit" id="submit-btn">
+                    <span id="btn-text">Predict Churn</span>
+                    <div class="loader" id="loader"></div>
+                </button>
+            </div>
+        </form>
+
+        <div id="result-container">
+            <h2 id="result-title"></h2>
+            <p id="result-prob"></p>
+        </div>
+
+    </div>
+
+    <script src="/static/script.js"></script>
+</body>
+</html>
